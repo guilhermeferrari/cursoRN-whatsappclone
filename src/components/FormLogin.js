@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { View, Text, TextInput, Button, TouchableOpacity, ImageBackground, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
@@ -13,46 +13,68 @@ const COLOR_HTML_S = '#00BFA5'
 const COLOR_RGBA_S = 'rgba(0,191,165,0.9)'
 
 const borderRADIUS_PADRAO = 14
+export const ERROR_COLOR_PADRAO = '#B00020'
+let ERROR_COLOR = 'transparent'
 
-const formLogin = props => (
-    <ImageBackground style={{ flex: 1, width: null }} source={require('../imgs/bg.png')}>
-        <View style={{ flex: 1, padding: 5 }}>
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ fontSize: 25, color: 'white' }}>WhatsApp Clone</Text>
-            </View>
-            <View style={styles.viewDados}>
-                <View style={styles.viewEmailSenha}>
-                    <TextInput value={props.email} style={styles.campoEntrada} placeholder='E-mail'
-                        onChangeText={texto => props.modificaEmail(texto)}
-                        placeholderTextColor={PLACEHOLDER_COLOR} />
-                    <TextInput secureTextEntry value={props.senha} style={styles.campoEntrada} placeholder='Senha'
-                        onChangeText={texto => props.modificaSenha(texto)}
-                        placeholderTextColor={PLACEHOLDER_COLOR} />
+class formLogin extends Component {
+
+    componentWillMount(){
+        ERROR_COLOR = this.props.errorColor
+    }
+
+    render() {
+        return (
+            <ImageBackground style={{ flex: 1, width: null }} source={require('../imgs/bg.png')}>
+                <View style={{ flex: 1, padding: 5 }}>
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={{ fontSize: 25, color: 'white' }}>WhatsApp Clone</Text>
+                    </View>
+                    <View style={styles.viewDados}>
+                        <View style={styles.viewEmailSenha}>
+                            <TextInput value={this.props.email} style={styles.campoEntrada} placeholder='E-mail'
+                                onChangeText={texto => this.props.modificaEmail(texto)}
+                                placeholderTextColor={PLACEHOLDER_COLOR} />
+                            <TextInput secureTextEntry value={this.props.senha} style={styles.campoEntrada} placeholder='Senha'
+                                onChangeText={texto => this.props.modificaSenha(texto)}
+                                placeholderTextColor={PLACEHOLDER_COLOR} />
+                        </View>
+                        <View style={styles.viewCadastrar}>
+                            <TouchableOpacity
+                                onPress={
+                                    () => {
+                                        Actions.formCadastro()
+                                    }
+                                }>
+                                <Text style={{ fontSize: 20, color: '#212121' }}>Ainda não tem cadastro? Cadastre-se</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                    <View style={{ flex: 2, alignItems: 'center' }}>
+                        <View style={styles.botaoAcessar}>
+                            <Button title="Acessar" color='white' onPress={() => false} />
+                        </View>
+                    </View>
                 </View>
-                <View style={styles.viewCadastrar}>
-                    <TouchableOpacity
-                        onPress={
-                            () => {
-                                Actions.formCadastro()
-                            }
-                        }>
-                        <Text style={{ fontSize: 20, color: '#212121' }}>Ainda não tem cadastro? Cadastre-se</Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
-            <View style={{ flex: 2, alignItems: 'center' }}>
-                <View style={styles.botaoAcessar}>
-                    <Button title="Acessar" color='white' onPress={() => false} />
-                </View>
-            </View>
-        </View>
-    </ImageBackground>
-)
+            </ImageBackground>
+        )
+    }
+}
 
 export const styles = StyleSheet.create({
+    viewErro: {
+        marginBottom: -20,
+        flex: 2,
+        backgroundColor: ERROR_COLOR,
+        borderRadius: borderRADIUS_PADRAO
+    },
+    txtErro: {
+        margin: 10,
+        color: 'white',
+        fontSize: 18
+    },
     campoEntrada: {
         fontSize: 20,
-        height: 45, 
+        height: 45,
         color: PLACEHOLDER_COLOR
     },
     viewEmailSenha: {
@@ -84,7 +106,8 @@ export const styles = StyleSheet.create({
 const mapStateToProps = state => (
     {
         email: state.AutenticacaoReducer.email,
-        senha: state.AutenticacaoReducer.senha
+        senha: state.AutenticacaoReducer.senha,
+        errorColor: state.AutenticacaoReducer.errorColor
     }
 )
 

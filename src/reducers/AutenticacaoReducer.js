@@ -1,8 +1,11 @@
+import {ERROR_COLOR_PADRAO} from '../components/FormLogin'
 
 const INITIAL_STATE = {
     nome: '',
     email: '',
-    senha: ''
+    senha: '',
+    erroCadastro: '',
+    errorColor: 'transparent'
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -17,6 +20,10 @@ export default (state = INITIAL_STATE, action) => {
     }
     if(action.type == 'modifica_nome'){
         return {...state, nome: action.payload}
+    }
+    if(action.type == 'cadastro_usuario_erro') {
+        console.log(ERROR_COLOR_PADRAO);
+        return{ ...state, erroCadastro: action.payload, errorColor: ERROR_COLOR_PADRAO}
     }
     return state
 }
