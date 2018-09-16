@@ -1,33 +1,83 @@
 import React from 'react';
-import { View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Button, TouchableOpacity, ImageBackground, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import { modificaEmail, modificaSenha } from '../actions/AutenticacaoActions'
 
+export const PLACEHOLDER_COLOR = '#CFD8DC'
+
+const COLOR_HTML_P = '#009688' // P para PRIMARY COLOR
+const COLOR_RGBA_P = 'rgba(0,150,136,0.8)'
+
+const COLOR_HTML_S = '#8BC34A'
+const COLOR_RGBA_S = 'rgba(139,195,74,0.8)'
+
 const formLogin = props => (
-    <View style={{ flex: 1, padding: 10 }}>
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text style={{ fontSize: 25 }}>WhatsApp Clone</Text>
+    <ImageBackground style={{ flex: 1, width: null }} source={require('../imgs/bg.png')}>
+        <View style={{ flex: 1, padding: 5 }}>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <Text style={{ fontSize: 25, color: 'white' }}>WhatsApp Clone</Text>
+            </View>
+            <View style={styles.viewDados}>
+                <View style={styles.viewEmailSenha}>
+                    <TextInput value={props.email} style={styles.campoEntrada} placeholder='E-mail'
+                        onChangeText={texto => props.modificaEmail(texto)}
+                        placeholderTextColor={PLACEHOLDER_COLOR} />
+                    <TextInput secureTextEntry value={props.senha} style={styles.campoEntrada} placeholder='Senha'
+                        onChangeText={texto => props.modificaSenha(texto)}
+                        placeholderTextColor={PLACEHOLDER_COLOR} />
+                </View>
+                <View style={styles.viewCadastrar}>
+                    <TouchableOpacity
+                        onPress={
+                            () => {
+                                Actions.formCadastro()
+                            }
+                        }>
+                        <Text style={{ fontSize: 20, color: '#212121' }}>Ainda não tem cadastro? Cadastre-se</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+            <View style={{ flex: 2, alignItems: 'center' }}>
+                <View style={styles.botaoAcessar}>
+                    <Button title="Acessar" color='white' onPress={() => false} />
+                </View>
+            </View>
         </View>
-        <View style={{ flex: 2 }}>
-            <TextInput value={props.email} style={{ fontSize: 20, height: 45 }} placeholder='E-mail'
-                onChangeText={texto => props.modificaEmail(texto)} />
-            <TextInput secureTextEntry value={props.senha} style={{ fontSize: 20, height: 45 }} placeholder='Senha'
-                onChangeText={texto => props.modificaSenha(texto)} />
-            <TouchableOpacity
-                onPress={
-                    () => {
-                        Actions.formCadastro()
-                    }
-                }>
-                <Text style={{ fontSize: 20 }}>Ainda não tem cadastro? Cadastre-se</Text>
-            </TouchableOpacity>
-        </View>
-        <View style={{ flex: 2 }}>
-            <Button title="Acessar" color='#115E54' onPress={() => false} />
-        </View>
-    </View>
+    </ImageBackground>
 )
+
+export const styles = StyleSheet.create({
+    campoEntrada: {
+        fontSize: 20,
+        height: 45, 
+        color: PLACEHOLDER_COLOR
+    },
+    viewEmailSenha: {
+        flex: 1,
+        marginTop: 50,
+        marginLeft: 10
+    },
+    viewCadastrar: {
+        flex: 1,
+        alignItems: 'center',
+        marginTop: 20
+    },
+    viewDados: {
+        flex: 2,
+        backgroundColor: COLOR_HTML_P,
+        borderRadius: 18
+    },
+    botaoAcessar: {
+        marginTop: -21,
+        height: 42,
+        width: 150,
+        backgroundColor: COLOR_HTML_S,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 18
+    }
+})
 
 const mapStateToProps = state => (
     {
