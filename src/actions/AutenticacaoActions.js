@@ -11,3 +11,10 @@ export const modificaSenha = (texto) => {
         payload: texto
     }
 }
+
+export const modificaNome = (texto) => {
+    return{
+        type: 'modifica_nome',
+        payload: texto
+    }
+}
