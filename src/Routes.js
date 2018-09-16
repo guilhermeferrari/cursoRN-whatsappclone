@@ -7,7 +7,7 @@ export default props => (
     <Router>
         <Scene key="root">
             <Scene key="formLogin" component={FormLogin} title="Login" />
-            <Scene key="formCadastro" component={FormCadastro} title="Cadastro" />
+            <Scene key="formCadastro" component={FormCadastro} initial title="Cadastro" />
         </Scene>
     </Router>
 )
