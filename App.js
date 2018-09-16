@@ -11,10 +11,12 @@ import { Platform, StyleSheet, Text, View } from 'react-native';
 import Routes from './src/Routes'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
+import reducers from './src/reducers/index'
+
 export default class App extends Component {
   render() {
     return (
-      <Provider>
+      <Provider store={createStore(reducers)}>
         <Routes />
       </Provider>
     );
