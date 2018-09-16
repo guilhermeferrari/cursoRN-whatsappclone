@@ -6,5 +6,14 @@ const INITIAL_STATE = {
 }
 
 export default (state = INITIAL_STATE, action) => {
+    // switch(action.type){
+    //     case 'modifica_email':
+    // }
+    if(action.type == 'modifica_email'){
+        return {...state, email: action.payload}
+    }
+    if(action.type == 'modifica_senha'){
+        return {...state, senha: action.payload}
+    }
     return state
 }

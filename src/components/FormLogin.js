@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
+import { modificaEmail, modificaSenha } from '../actions/AutenticacaoActions'
 
 const formLogin = props => {
     console.log(props);
@@ -11,8 +12,10 @@ const formLogin = props => {
                 <Text style={{ fontSize: 25 }}>WhatsApp Clone</Text>
             </View>
             <View style={{ flex: 2 }}>
-                <TextInput value={props.email} style={{ fontSize: 20, height: 45 }} placeholder='E-mail' />
-                <TextInput value={props.senha} style={{ fontSize: 20, height: 45 }} placeholder='Senha' />
+                <TextInput value={props.email} style={{ fontSize: 20, height: 45 }} placeholder='E-mail'
+                    onChangeText={texto => props.modificaEmail(texto)} />
+                <TextInput value={props.senha} style={{ fontSize: 20, height: 45 }} placeholder='Senha'
+                    onChangeText={texto => props.modificaSenha(texto)} />
                 <TouchableOpacity
                     onPress={
                         () => {
@@ -36,4 +39,4 @@ const mapStateToProps = state => (
     }
 )
 
-export default connect(mapStateToProps, null)(formLogin)
+export default connect(mapStateToProps, { modificaEmail, modificaSenha })(formLogin)
