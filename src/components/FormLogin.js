@@ -6,11 +6,13 @@ import { modificaEmail, modificaSenha } from '../actions/AutenticacaoActions'
 
 export const PLACEHOLDER_COLOR = '#CFD8DC'
 
-const COLOR_HTML_P = '#009688' // P para PRIMARY COLOR
-const COLOR_RGBA_P = 'rgba(0,150,136,0.8)'
+const COLOR_HTML_P = '#00695C' // P para PRIMARY COLOR
+const COLOR_RGBA_P = 'rgba(0,105,92,0.9)'
 
-const COLOR_HTML_S = '#8BC34A'
-const COLOR_RGBA_S = 'rgba(139,195,74,0.8)'
+const COLOR_HTML_S = '#00BFA5'
+const COLOR_RGBA_S = 'rgba(0,191,165,0.9)'
+
+const borderRADIUS_PADRAO = 14
 
 const formLogin = props => (
     <ImageBackground style={{ flex: 1, width: null }} source={require('../imgs/bg.png')}>
@@ -65,8 +67,8 @@ export const styles = StyleSheet.create({
     },
     viewDados: {
         flex: 2,
-        backgroundColor: COLOR_HTML_P,
-        borderRadius: 18
+        backgroundColor: COLOR_RGBA_P,
+        borderRadius: borderRADIUS_PADRAO
     },
     botaoAcessar: {
         marginTop: -21,
@@ -75,7 +77,7 @@ export const styles = StyleSheet.create({
         backgroundColor: COLOR_HTML_S,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 18
+        borderRadius: borderRADIUS_PADRAO
     }
 })
 
