@@ -5,7 +5,8 @@ const INITIAL_STATE = {
     email: '',
     senha: '',
     erroCadastro: '',
-    errorColor: 'transparent'
+    errorColor: 'transparent',
+    erroLogin: ''
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -26,6 +27,12 @@ export default (state = INITIAL_STATE, action) => {
     }
     if(action.type == 'cadastro_usuario_sucesso'){
         return{ ...state, senha:'', errorColor:'transparent', erroCadastro: '' }
+    }
+    if(action.type == 'login_usuario_erro'){
+        return{ ...state, erroLogin: action.payload, errorColor: ERROR_COLOR_PADRAO }
+    }
+    if(action.type == 'login_usuario_sucesso'){
+        return{ ...state, erroLogin: '', errorColor: 'transparent' }
     }
     return state
 }

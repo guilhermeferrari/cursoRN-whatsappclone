@@ -2,6 +2,22 @@ import firebase from 'firebase'
 import { Actions } from 'react-native-router-flux'
 import b64 from 'base-64'
 
+export const autenticarUsuario = ({ email, senha }) => {
+    return dispatch => {
+        firebase.auth().signInWithEmailAndPassword(email, senha)
+            .then(value => loginUsuarioSucesso(dispatch))
+            .catch(erro => loginUsuarioErro(dispatch, erro));
+    }
+}
+
+const loginUsuarioSucesso = (dispatch) => {
+    dispatch({ type: 'login_usuario_sucesso' })
+}
+
+const loginUsuarioErro = (dispatch, erro) => {
+    dispatch({ type: 'login_usuario_erro', payload: erro.message })
+}
+
 export const modificaEmail = (texto) => {
     return {
         type: 'modifica_email',
@@ -28,7 +44,7 @@ export const cadastraUsuario = ({ nome, email, senha }) => {
         firebase.auth().createUserWithEmailAndPassword(email, senha)
             .then(user => {
                 let emailB64 = b64.encode(email)
-                firebase.database().ref('/contatos/' + emailB64).push({ nome })
+                firebase.database().ref(`/contatos/${emailB64}`).push({ nome })
                     .then(value => cadastroUsuarioSucesso(dispatch))
             })
             .catch(erro => cadastroUsuarioErro(erro, dispatch));
