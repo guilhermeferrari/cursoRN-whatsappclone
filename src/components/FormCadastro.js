@@ -25,7 +25,7 @@ class formCadastro extends Component {
 			<ImageBackground style={{ flex: 1, width: null }} source={require('../imgs/bg.png')}>
 				<View style={{ flex: 1, padding: 5 }}>
 					<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-						<Text style={{ fontSize: 25, color: 'white' }}>Seus dados</Text>
+						<Text style={{ fontSize: 25, color: 'white' }}></Text>
 					</View>
 					<View style={[styles.viewDados, stylesC.viewTemp]}>
 						<TextInput value={this.props.nome}

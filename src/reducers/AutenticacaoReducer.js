@@ -22,8 +22,10 @@ export default (state = INITIAL_STATE, action) => {
         return {...state, nome: action.payload}
     }
     if(action.type == 'cadastro_usuario_erro') {
-        console.log(ERROR_COLOR_PADRAO);
         return{ ...state, erroCadastro: action.payload, errorColor: ERROR_COLOR_PADRAO}
+    }
+    if(action.type == 'cadastro_usuario_sucesso'){
+        return{ ...state, senha:'', errorColor:'transparent', erroCadastro: '' }
     }
     return state
 }

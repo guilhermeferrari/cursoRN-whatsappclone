@@ -6,13 +6,13 @@ import { modificaEmail, modificaSenha } from '../actions/AutenticacaoActions'
 
 export const PLACEHOLDER_COLOR = '#CFD8DC'
 
-const COLOR_HTML_P = '#00695C' // P para PRIMARY COLOR
-const COLOR_RGBA_P = 'rgba(0,105,92,0.9)'
+export const COLOR_HTML_P = '#00695C' // P para PRIMARY COLOR
+export const COLOR_RGBA_P = 'rgba(0,105,92,0.9)'
 
-const COLOR_HTML_S = '#00BFA5'
-const COLOR_RGBA_S = 'rgba(0,191,165,0.9)'
+export const COLOR_HTML_S = '#00BFA5'
+export const COLOR_RGBA_S = 'rgba(0,191,165,0.9)'
 
-const borderRADIUS_PADRAO = 14
+export const borderRADIUS_PADRAO = 14
 export const ERROR_COLOR_PADRAO = '#B00020'
 let ERROR_COLOR = 'transparent'
 
