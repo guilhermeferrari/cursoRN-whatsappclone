@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, Button, ImageBackground, StyleSheet, Text } from 'react-native';
+import { View, TextInput, Button, ImageBackground, StyleSheet, Text, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux'
 import {
 	modificaEmail,
@@ -16,8 +16,20 @@ class formCadastro extends Component {
 		const email = this.props.email;
 		const senha = this.props.senha; */
 		//ou 
-		const {nome, email, senha} = this.props;
+		const { nome, email, senha } = this.props;
 		this.props.cadastraUsuario({ nome, email, senha });
+	}
+
+	renderBtnCadastro() {
+		if(this.props.loading_cadastro){
+			return (
+                <ActivityIndicator size="large" />
+            )
+		}
+		return (
+			<Button title="Cadastrar"
+				color="white"
+				onPress={() => this._cadastraUsuario()} />)
 	}
 
 	render() {
@@ -32,7 +44,7 @@ class formCadastro extends Component {
 							placeholder="Nome"
 							style={styles.campoEntrada}
 							onChangeText={texto => this.props.modificaNome(texto)}
-							placeholderTextColor={PLACEHOLDER_COLOR} 
+							placeholderTextColor={PLACEHOLDER_COLOR}
 							autoCapitalize='words' />
 						<TextInput value={this.props.email}
 							placeholder="E-mail"
@@ -48,10 +60,10 @@ class formCadastro extends Component {
 					</View>
 					<View style={{ flex: 1, alignItems: 'center' }}>
 						<View style={styles.botaoAcessar}>
-							<Button title="Cadastrar" color="white" onPress={() => this._cadastraUsuario()} />
+							{this.renderBtnCadastro()}
 						</View>
 					</View>
-					<View style={[styles.viewErro, {backgroundColor: this.props.errorColor}]}>
+					<View style={[styles.viewErro, { backgroundColor: this.props.errorColor }]}>
 						<Text style={styles.txtErro}>{this.props.erroCadastro}</Text>
 					</View>
 				</View>
@@ -66,7 +78,8 @@ const mapStateToProps = state => (
 		email: state.AutenticacaoReducer.email,
 		senha: state.AutenticacaoReducer.senha,
 		erroCadastro: state.AutenticacaoReducer.erroCadastro,
-		errorColor: state.AutenticacaoReducer.errorColor
+		errorColor: state.AutenticacaoReducer.errorColor,
+		loading_cadastro: state.AutenticacaoReducer.loading_cadastro
 	}
 )
 
