@@ -32,12 +32,14 @@ class formCadastro extends Component {
 							placeholder="Nome"
 							style={styles.campoEntrada}
 							onChangeText={texto => this.props.modificaNome(texto)}
-							placeholderTextColor={PLACEHOLDER_COLOR} />
+							placeholderTextColor={PLACEHOLDER_COLOR} 
+							autoCapitalize='words' />
 						<TextInput value={this.props.email}
 							placeholder="E-mail"
 							style={styles.campoEntrada}
 							onChangeText={texto => this.props.modificaEmail(texto)}
-							placeholderTextColor={PLACEHOLDER_COLOR} />
+							placeholderTextColor={PLACEHOLDER_COLOR}
+							autoCapitalize='none' />
 						<TextInput secureTextEntry value={this.props.senha}
 							placeholder="Senha"
 							style={styles.campoEntrada}

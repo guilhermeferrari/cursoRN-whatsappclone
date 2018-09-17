@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { View, Text, TextInput, Button, TouchableOpacity, ImageBackground, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
-import { modificaEmail, modificaSenha } from '../actions/AutenticacaoActions'
+import { modificaEmail, modificaSenha, autenticarUsuario } from '../actions/AutenticacaoActions'
 
 export const PLACEHOLDER_COLOR = '#CFD8DC'
 
@@ -18,8 +18,13 @@ let ERROR_COLOR = 'transparent'
 
 class formLogin extends Component {
 
-    componentWillMount(){
+    componentWillMount() {
         ERROR_COLOR = this.props.errorColor
+    }
+
+    _autenticarUsuario() {
+        const { email, senha } = this.props
+        this.props.autenticarUsuario({ email, senha })
     }
 
     render() {
@@ -33,7 +38,8 @@ class formLogin extends Component {
                         <View style={styles.viewEmailSenha}>
                             <TextInput value={this.props.email} style={styles.campoEntrada} placeholder='E-mail'
                                 onChangeText={texto => this.props.modificaEmail(texto)}
-                                placeholderTextColor={PLACEHOLDER_COLOR} />
+                                placeholderTextColor={PLACEHOLDER_COLOR}
+                                autoCapitalize="none" />
                             <TextInput secureTextEntry value={this.props.senha} style={styles.campoEntrada} placeholder='Senha'
                                 onChangeText={texto => this.props.modificaSenha(texto)}
                                 placeholderTextColor={PLACEHOLDER_COLOR} />
@@ -49,10 +55,14 @@ class formLogin extends Component {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <View style={{ flex: 2, alignItems: 'center' }}>
+                    <View style={{ flex: 1, alignItems: 'center' }}>
                         <View style={styles.botaoAcessar}>
-                            <Button title="Acessar" color='white' onPress={() => false} />
+                            <Button title="Acessar" color='white'
+                                onPress={() => this._autenticarUsuario()} />
                         </View>
+                    </View>
+                    <View style={[styles.viewErro, { backgroundColor: this.props.errorColor }]}>
+                        <Text style={styles.txtErro}>{this.props.erroLogin}</Text>
                     </View>
                 </View>
             </ImageBackground>
@@ -107,8 +117,9 @@ const mapStateToProps = state => (
     {
         email: state.AutenticacaoReducer.email,
         senha: state.AutenticacaoReducer.senha,
-        errorColor: state.AutenticacaoReducer.errorColor
+        errorColor: state.AutenticacaoReducer.errorColor,
+        erroLogin: state.AutenticacaoReducer.erroLogin
     }
 )
 
-export default connect(mapStateToProps, { modificaEmail, modificaSenha })(formLogin)
+export default connect(mapStateToProps, { modificaEmail, modificaSenha, autenticarUsuario })(formLogin)
