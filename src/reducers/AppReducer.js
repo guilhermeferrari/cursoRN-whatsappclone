@@ -16,10 +16,9 @@ export default (state = INITIAL_STATE, action) => {
         case ADICIONA_CONTATO_ERRO:
             return { ...state, cadastro_resultado_txt_erro: action.payload, error_color: ERROR_COLOR_PADRAO }
         case ADICIONA_CONTATO_SUCESSO:
-            return { ...state, cadastro_resultado_inclusao: true }
+            return { ...state, cadastro_resultado_inclusao: true, adiciona_contato_email:'' }
         case VOLTAR_CENA_ADDCONTATO:
-            const { error_color, cadastro_resultado_txt_erro, adiciona_contato_email } = ''
-            return { ...state, error_color, cadastro_resultado_txt_erro, adiciona_contato_email }
+            return { ...state, error_color:'transparent',cadastro_resultado_txt_erro:'',adiciona_contato_email:'' }
         case ABRIR_PAG_ADDCONTATO:
             return { ...state, cadastro_resultado_inclusao: false}
         default:
