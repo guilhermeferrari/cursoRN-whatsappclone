@@ -11,3 +11,4 @@ export const CADASTRO_EM_ANDAMENTO = 'cadastro_em_andamento'
 //APPACTIONS
 
 export const MODIFICA_ADICIONA_CONTATO_EMAIL = 'modifica_addContactEmail'
+export const ADICIONA_CONTATO_ERRO = 'add_contact_error'
