@@ -10,16 +10,26 @@ export const modificaAdicionaContatoEmail = texto => {
 }
 
 export const adicionaContato = email => {
-
+    firebase.auth().signInWithEmailAndPassword('guilherme@g.com', 'azeazeaze')
     return dispatch => {
-        
+
+
         let emailB64 = b64.encode(email.toLowerCase())
 
         firebase.database().ref(`/contatos/${emailB64}`)
             .once('value')
             .then(snapshot => {
                 if (snapshot.val()) {
-                    console.log('USUARIO EXISTE');
+                    //email do contato a ser add
+
+                    //email do usuario conectado
+                    const { currentUser } = firebase.auth()
+                    let emailUsuarioB64 = b64.encode(currentUser.email)
+
+                    firebase.database().ref(`/usuario_contatos/${emailUsuarioB64}`)
+                        .push({ email: email, nome: 'Nome do contato' })
+                        .then(() => console.log("sucesso"))
+                        .catch((erro) => console.log(erro))
                 } else {
                     dispatch({
                         type: ADICIONA_CONTATO_ERRO,
