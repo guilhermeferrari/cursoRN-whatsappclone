@@ -3,8 +3,13 @@ import { View, TextInput, Button, StyleSheet, Text } from 'react-native';
 import { connect } from 'react-redux'
 import { modificaAdicionaContatoEmail, adicionaContato } from '../actions/AppActions'
 import { styles } from './FormLogin';
+import { Actions } from 'react-native-router-flux'
 
 class AdicionarContato extends Component {
+
+    componentWillMount(){
+        
+    }
 
     renderAdicionarContato() {
         if (!this.props.cadastro_resultado_inclusao) {
