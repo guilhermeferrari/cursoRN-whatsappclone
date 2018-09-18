@@ -13,8 +13,8 @@ import {
 
 const INITIAL_STATE = {
     nome: '',
-    email: '',
-    senha: '',
+    email: 'guilherme@g.com',
+    senha: 'azeazeaze',
     erroCadastro: '',
     errorColor: 'transparent',
     erroLogin: '',

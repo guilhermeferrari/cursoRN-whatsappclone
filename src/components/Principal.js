@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { TabViewAnimated, SceneMap } from 'react-native-tab-view';
+import { connect } from 'react-redux'
 
 import TabBarMenu from './TabBarMenu';
 import Conversas from './Conversas';
 import Contatos from './Contatos';
+import { autenticarUsuario } from '../actions/AutenticacaoActions';
+class Principal extends Component {
 
-export default class Principal extends Component {
     state = {
         index: 0,
         routes: [
@@ -41,3 +43,5 @@ const styles = StyleSheet.create({
         flex: 1,
     },
 });
+
+export default connect(null, { autenticarUsuario })(Principal)

@@ -1,4 +1,4 @@
-import { MODIFICA_ADICIONA_CONTATO_EMAIL, ADICIONA_CONTATO_ERRO, ADICIONA_CONTATO_SUCESSO, VOLTAR_CENA_ADDCONTATO, ABRIR_PAG_ADDCONTATO } from "./types";
+import { MODIFICA_ADICIONA_CONTATO_EMAIL, ADICIONA_CONTATO_ERRO, ADICIONA_CONTATO_SUCESSO, VOLTAR_CENA_ADDCONTATO, ABRIR_PAG_ADDCONTATO, LISTA_CONTATO_USUARIO } from "./types";
 import b64 from 'base-64'
 import firebase from 'firebase'
 import _ from 'lodash'
@@ -23,8 +23,7 @@ export const modificaAdicionaContatoEmail = texto => {
 }
 
 export const adicionaContato = email => {
-    firebase.auth().signInWithEmailAndPassword('guilherme@g.com', 'azeazeaze')
-    console.log(email);
+
     if (email == '') return {
         type: ADICIONA_CONTATO_ERRO,
         payload: 'E-mail invalido'
@@ -40,7 +39,6 @@ export const adicionaContato = email => {
                 if (snapshot.val()) {
                     //email do contato a ser add
                     const dadosUsuario = _.first(_.values(snapshot.val()))
-                    console.log(dadosUsuario);
 
                     //email do usuario conectado
                     const { currentUser } = firebase.auth()
@@ -72,3 +70,17 @@ const adicionaContatoSucesso = (dispatch) => (
         type: ADICIONA_CONTATO_SUCESSO
     })
 )
+
+export const contatosUsuarioFetch = () => {
+    const { currentUser } = firebase.auth()
+    return (dispatch) => {
+        let emailUsuarioB64 = b64.encode(currentUser.email)
+        firebase.database().ref(`/usuario_contatos/${emailUsuarioB64}`)
+            .on("value", snapshot => {
+                dispatch({
+                    type: LISTA_CONTATO_USUARIO,
+                    payload: snapshot.val()
+                })
+            })
+    }
+}
