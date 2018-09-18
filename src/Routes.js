@@ -5,6 +5,7 @@ import BoasVindas from './components/BoasVindas'
 import Principal from './components/Principal'
 import { Router, Scene } from 'react-native-router-flux';
 import { StatusBar, View } from 'react-native'
+import AdicionarContato from './components/AdicionarContato'
 
 export default props => (
     <View style={{flex:1}}>
@@ -15,6 +16,7 @@ export default props => (
                 <Scene key="formCadastro" component={FormCadastro} title="Cadastro" />
                 <Scene key="boasVindas" component={BoasVindas} hideNavBar title="Bem Vindo" />
                 <Scene key='principal' component={Principal} hideNavBar initial title="Principal" />
+                <Scene key='adicionarContato' component={AdicionarContato} title="Adicionar Contato" />
             </Scene>
         </Router>
     </View>
