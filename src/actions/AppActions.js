@@ -24,6 +24,11 @@ export const modificaAdicionaContatoEmail = texto => {
 
 export const adicionaContato = email => {
     firebase.auth().signInWithEmailAndPassword('guilherme@g.com', 'azeazeaze')
+    console.log(email);
+    if (email == '') return {
+        type: ADICIONA_CONTATO_ERRO,
+        payload: 'E-mail invalido'
+    }
     return dispatch => {
 
 
