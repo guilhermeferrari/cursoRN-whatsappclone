@@ -2,7 +2,10 @@ import {
     MODIFICA_ADICIONA_CONTATO_EMAIL,
     ADICIONA_CONTATO_ERRO,
     ADICIONA_CONTATO_SUCESSO,
-    VOLTAR_CENA_ADDCONTATO, ABRIR_PAG_ADDCONTATO, MODIFICA_MENSAGEM
+    VOLTAR_CENA_ADDCONTATO, 
+    ABRIR_PAG_ADDCONTATO, 
+    MODIFICA_MENSAGEM, 
+    ENVIA_MENSAGEM_SUCESSO
 } from "../actions/types";
 import { ERROR_COLOR_PADRAO } from "../components/FormLogin";
 
@@ -28,6 +31,9 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, cadastro_resultado_inclusao: false }
         case MODIFICA_MENSAGEM:
             return { ...state, mensagem: action.payload }
+        case ENVIA_MENSAGEM_SUCESSO:
+            console.log("qqtaerrado");
+            return { ...state, mensagem: '' }
         default:
             return state
     }

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { modificaMensagem, enviarMensagem, conversaUsuarioFetch } from '../actions/AppActions';
 import _ from 'lodash'
 import { COLOR_HTML_P, COLOR_HTML_S, borderRADIUS_PADRAO, styles } from './FormLogin';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 const btnEnviar = require('../imgs/enviar.png')
 
@@ -14,13 +15,8 @@ class Conversa extends Component {
         this.criaFonteDeDados(this.props.conversa)
     }
 
-    componentWillReceiveProps(nextProps){
+    componentWillReceiveProps(nextProps) {
         this.criaFonteDeDados(nextProps.conversa)
-    }
-
-    _enviarMensagem() {
-        const { mensagem, contatoNome, contatoEmail } = this.props
-        this.props.enviarMensagem(mensagem, contatoNome, contatoEmail)
     }
 
     criaFonteDeDados(conversa) {
@@ -29,14 +25,26 @@ class Conversa extends Component {
         })
         this.dataSource = ds.cloneWithRows(conversa)
     }
+    
+    _enviarMensagem() {
+        const { mensagem, contatoNome, contatoEmail } = this.props
+        this.props.enviarMensagem(mensagem, contatoNome, contatoEmail)
+    }
 
-    renderRow(texto){
-        return(
-            <View>
-                <Text>{texto.mensagem}</Text>
-                <Text>{texto.tipo}</Text>
-            </View>
-        )
+    renderRow(texto) {
+        if (texto.tipo === 'e') {
+            return (
+                <View style={stylesConversa.viewMsgEnviada}>
+                    <Text style={stylesConversa.txtEnviado}>{texto.mensagem}</Text>
+                </View>
+            )
+        } else {
+            return (
+                <View style={stylesConversa.viewMsgRecebida}>
+                    <Text style={stylesConversa.txtRecebido}>{texto.mensagem}</Text>
+                </View>
+            )
+        }
     }
 
     render() {
@@ -67,6 +75,32 @@ class Conversa extends Component {
 }
 
 const stylesConversa = StyleSheet.create({
+    viewMsgRecebida: {
+        alignItems: 'flex-start',
+        marginTop: 5,
+        marginBottom: 5,
+        marginRight: 40
+    },
+    viewMsgEnviada: {
+        alignItems: 'flex-end',
+        marginTop: 5,
+        marginBottom: 5,
+        marginLeft: 40
+    },
+    txtEnviado: {
+        fontSize: 18,
+        color: '#000',
+        padding: 10,
+        backgroundColor: '#dbf5b4',
+        //elevation: 30
+    },
+    txtRecebido: {
+        fontSize: 18,
+        color: '#000',
+        padding: 10,
+        backgroundColor: '#F7F7F7',
+        //elevation: 30
+    },
     viewPrincipal: {
         flex: 1,
         backgroundColor: '#eee4dc',

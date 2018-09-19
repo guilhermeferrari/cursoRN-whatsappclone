@@ -5,7 +5,8 @@ import {
     ABRIR_PAG_ADDCONTATO,
     LISTA_CONTATO_USUARIO,
     MODIFICA_MENSAGEM,
-    LISTA_CONVERSA_USUARIO
+    LISTA_CONVERSA_USUARIO,
+    ENVIA_MENSAGEM_SUCESSO
 } from "./types";
 import b64 from 'base-64'
 import firebase from 'firebase'
@@ -116,10 +117,7 @@ export const enviarMensagem = (mensagem, contatoNome, contatoEmail) => {
             .then(() => {
                 firebase.database().ref(`/mensagens/${contatoEmailB64}/${usuarioEmailB64}`)
                     .push({ mensagem, tipo: 'r' })
-                    .then(() => dispatch({
-                        type: ''
-                    })
-                    )
+                    .then(() => dispatch({ type: ENVIA_MENSAGEM_SUCESSO }))
             })
             .then(() => {
                 firebase.database().ref(`/usuario_conversas/${usuarioEmailB64}/${contatoEmailB64}`)
