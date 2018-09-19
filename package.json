@@ -12,6 +12,7 @@
     "lodash": "^4.17.11",
     "react": "16.5.0",
     "react-native": "0.57.0",
+    "react-native-keyboard-aware-scroll-view": "^0.7.2",
     "react-native-router-flux": "^4.0.1",
     "react-native-tab-view": "0.0.67",
     "react-redux": "^5.0.7",
