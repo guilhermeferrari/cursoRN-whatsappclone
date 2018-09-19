@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, ListView, StyleSheet } from 'react-native';
+import { View, Text, ListView, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux'
 import { contatosUsuarioFetch } from '../actions/AppActions';
 import _ from 'lodash'
 import { COLOR_HTML_P, COLOR_HTML_S, borderRADIUS_PADRAO } from './FormLogin';
+import { Actions } from 'react-native-router-flux'
 
 
 class Contatos extends Component {
@@ -22,21 +23,27 @@ class Contatos extends Component {
         this.fonteDeDados = ds.cloneWithRows(contatos)
     }
 
+    renderRow(contato) {
+        return (
+            <TouchableOpacity
+                onPress={() => Actions.conversa({contatoNome: contato.nome, contatoEmail: contato.email, title: contato.nome})}
+            >
+                <View style={stylesContatos.viewContato}>
+                    <Text style={stylesContatos.txtNome}>{contato.nome}</Text>
+                    <Text style={stylesContatos.email}>{contato.email}</Text>
+                </View>
+            </TouchableOpacity>
+        )
+    }
+
     render() {
+        
         return (
             // <View style={stylesContatos.viewPrincipal}>
             <ListView
                 enableEmptySections
                 dataSource={this.fonteDeDados}
-                renderRow={data => {
-                    return (
-                        <View style={stylesContatos.viewContato}>
-                            <Text style={stylesContatos.txtNome}>{data.nome}</Text>
-                            <Text style={stylesContatos.email}>{data.email}</Text>
-                        </View>
-                    )
-                }
-                }
+                renderRow={data => this.renderRow(data)}
             />
             // </View>
         )
@@ -44,10 +51,10 @@ class Contatos extends Component {
 }
 
 const stylesContatos = StyleSheet.create({
-    txtNome:{
+    txtNome: {
         fontSize: 25
     },
-    txtEmail:{
+    txtEmail: {
         fontSize: 18
     },
     viewPrincipal: {
