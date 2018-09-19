@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#115E54",
         paddingTop: 20,
         elevation: 0,
-        marginBottom: 6
+        marginBottom: 0
     },
     navbarView: {
         justifyContent: 'space-between',
