@@ -25,7 +25,7 @@ class Conversa extends Component {
         })
         this.dataSource = ds.cloneWithRows(conversa)
     }
-    
+
     _enviarMensagem() {
         const { mensagem, contatoNome, contatoEmail } = this.props
         this.props.enviarMensagem(mensagem, contatoNome, contatoEmail)
@@ -55,6 +55,10 @@ class Conversa extends Component {
                         enableEmptySections
                         dataSource={this.dataSource}
                         renderRow={this.renderRow}
+                        ref={(ref) => this.scrollView = ref}
+                        onContentSizeChange={() => {
+                            this.scrollView.scrollToEnd({ animated: false })
+                        }}
                     />
                 </View>
                 <View style={stylesConversa.viewEntrada}>
