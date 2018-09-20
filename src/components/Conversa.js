@@ -24,6 +24,7 @@ class Conversa extends Component {
             rowHasChanged: (r1, r2) => r1 !== r2
         })
         this.dataSource = ds.cloneWithRows(conversa)
+        console.log("datasource: ", this.dataSource);
     }
 
     _enviarMensagem() {
@@ -127,6 +128,24 @@ const stylesConversa = StyleSheet.create({
         borderRadius: 30
     }
 });
+
+/* cont nao usada no codigo, somente um exemplo de um array para passar pro list view
+bastaria mudar o this.dataSource = ds.cloneWithRows(conversa) para
+this.dataSource = ds.cloneWithRows(cvTeste)
+bom para teste (principalmente de ajustes visuais) sem ter que ficar logando toda vez
+Cuidados: comentar temporariamente metodos que fazem conexao com bd, ja que nao há nenhum
+usuario autenticado (ver nas actions). 
+Para algumas cenas até consegui fazer login direto pelo codigo, algumas 
+nao deu (acho que por ser assincrono e tal), ver melhor isso dp */
+
+const cvTeste = [{ mensagem: "Ola", tipo: "e", uid: "-LMn0iwA29B3n5ZCVOOt" },
+{ mensagem: "Td bem", tipo: "e", uid: "-LMn0jxxAmIrZAOYVxdX" },
+{ mensagem: "Opa", tipo: "r", uid: "-LMn3qFp2qOKVRX0lxJ5" },
+{ mensagem: "Addd", tipo: "e", uid: "-LMnYUkF0DC6lQClGmFr" },
+{ mensagem: "Top", tipo: "r", uid: "-LMnYcseWM4f4QjPm6pl" },
+{ mensagem: "Chat god", tipo: "e", uid: "-LMn_8Lw0Vvdx75o92Ii" },
+{ mensagem: "Sdadasd", tipo: "e", uid: "-LMnc_jsmSvDDgoRp5L2" },
+{ mensagem: "Uai agora ta indo", tipo: "e", uid: "-LMnccOoz0LkvczvNIRx" }]
 
 const mapStateToProps = state => {
     const conversa = _.map(state.ListaConversaReducer, (val, uid) => {
