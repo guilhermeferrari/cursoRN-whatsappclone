@@ -7,7 +7,8 @@ import {
     MODIFICA_MENSAGEM,
     LISTA_CONVERSA_USUARIO,
     ENVIA_MENSAGEM_SUCESSO,
-    LISTA_CONVERSAS_USUARIO
+    LISTA_CONVERSAS_USUARIO,
+    LOGOUT
 } from "./types";
 import b64 from 'base-64'
 import firebase from 'firebase'

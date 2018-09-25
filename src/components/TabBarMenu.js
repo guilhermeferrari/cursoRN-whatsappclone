@@ -4,18 +4,23 @@ import { TabBar } from 'react-native-tab-view';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux'
 import { voltarCena, abrirAddContato } from '../actions/AppActions'
+import firebase from 'firebase'
 
 const addCONTATO = require('../imgs/addcontact.png')
 
 class TabBarMenu extends Component {
 
-    toqueBtnAdd(){
+    toqueBtnAdd() {
         this.props.abrirAddContato()
         Actions.adicionarContato({ onBack: () => this.voltar() })
     }
     voltar() {
         this.props.voltarCena() //setar os valores da pag de add contato para default (msg erro, cor da view de erro..)
         Actions.pop()
+    }
+
+    logout(){
+        firebase.auth().signOut().then(() => Actions.formLogin())
     }
 
     render() {
@@ -37,7 +42,11 @@ class TabBarMenu extends Component {
                             </TouchableOpacity>
                         </View>
                         <View>
-                            <Text style={styles.txtLogout}>Sair</Text>
+                            <TouchableOpacity
+                                onPress={() => this.logout()
+                                }>
+                                <Text style={styles.txtLogout}>Sair</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </View>
@@ -79,4 +88,4 @@ const mapStateToProps = state => (
     }
 )
 
-export default connect(mapStateToProps, {voltarCena, abrirAddContato})(TabBarMenu)
+export default connect(mapStateToProps, { voltarCena, abrirAddContato })(TabBarMenu)

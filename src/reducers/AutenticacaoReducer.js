@@ -8,7 +8,8 @@ import {
     LOGIN_USUARIO_SUCESSO,
     LOGIN_USUARIO_ERRO,
     LOGIN_EM_ANDAMENTO,
-    CADASTRO_EM_ANDAMENTO
+    CADASTRO_EM_ANDAMENTO,
+    LOGOUT
 } from '../actions/types'
 
 const INITIAL_STATE = {
@@ -40,7 +41,10 @@ export default (state = INITIAL_STATE, action) => {
         case LOGIN_USUARIO_ERRO:
             return { ...state, erroLogin: action.payload, errorColor: ERROR_COLOR_PADRAO, loading_login: false }
         case LOGIN_USUARIO_SUCESSO:
-            return { ...state, erroLogin: '', errorColor: 'transparent', loading_login: false }
+            return {
+                ...state, erroLogin: '', errorColor: 'transparent', loading_login: false,
+                nome: '', email: '', senha: ''
+            }
         case LOGIN_EM_ANDAMENTO:
             return { ...state, loading_login: true }
         case CADASTRO_EM_ANDAMENTO:
