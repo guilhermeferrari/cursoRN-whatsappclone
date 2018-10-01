@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, Button, ImageBackground, StyleSheet, Text, ActivityIndicator } from 'react-native';
+import { View, TextInput, StatusBar, Button, ImageBackground, StyleSheet, Text, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux'
 import {
 	modificaEmail,
@@ -7,7 +7,7 @@ import {
 	modificaNome,
 	cadastraUsuario
 } from '../actions/AutenticacaoActions'
-import { styles, PLACEHOLDER_COLOR } from './FormLogin'
+import { styles, PLACEHOLDER_COLOR, COLOR_HTML_P } from './FormLogin'
 
 class formCadastro extends Component {
 
@@ -21,10 +21,10 @@ class formCadastro extends Component {
 	}
 
 	renderBtnCadastro() {
-		if(this.props.loading_cadastro){
+		if (this.props.loading_cadastro) {
 			return (
-                <ActivityIndicator size="large" />
-            )
+				<ActivityIndicator size="large" />
+			)
 		}
 		return (
 			<Button title="Cadastrar"
@@ -35,7 +35,8 @@ class formCadastro extends Component {
 	render() {
 		return (
 			<ImageBackground style={{ flex: 1, width: null }} source={require('../imgs/bg.png')}>
-				<View style={{ flex: 1, padding: 5 }}>
+				<StatusBar backgroundColor={COLOR_HTML_P} translucent={false}/>
+				<View style={{ flex: 1, padding: 5}}>
 					<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 						<Text style={{ fontSize: 25, color: 'white' }}></Text>
 					</View>

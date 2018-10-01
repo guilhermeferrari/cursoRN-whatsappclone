@@ -12,13 +12,13 @@ import Routes from './src/Routes'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import reducers from './src/reducers/index'
-import firebase from 'firebase'
 import {key as apiKey} from './firebaseconfig.json'
 import ReduxThunk from 'redux-thunk'
 
 export default class App extends Component {
 
 	componentWillMount(){
+		const firebase = require("firebase");
 		let config = {
 			apiKey: apiKey,
 			authDomain: "whatsapp-clone-e01f1.firebaseapp.com",
@@ -31,6 +31,7 @@ export default class App extends Component {
 	}
 
   render() {
+		console.disableYellowBox = true;
     return (
       <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
         <Routes />
