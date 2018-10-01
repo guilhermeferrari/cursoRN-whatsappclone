@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, StatusBar } from 'react-native';
 import { TabViewAnimated, SceneMap } from 'react-native-tab-view';
 import { connect } from 'react-redux'
 
@@ -7,6 +7,7 @@ import TabBarMenu from './TabBarMenu';
 import Conversas from './Conversas';
 import Contatos from './Contatos';
 import { autenticarUsuario } from '../actions/AutenticacaoActions';
+import { COLOR_HTML_P, COLOR_HTML_S } from './FormLogin';
 class Principal extends Component {
 
     state = {

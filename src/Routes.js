@@ -10,7 +10,7 @@ import Conversa from './components/Conversa';
 
 export default props => (
     <View style={{flex:1}}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle="light-content"/>
         <Router navigationBarStyle={{ backgroundColor: COLOR_HTML_P }} titleStyle={{ color: '#fff' }} >
             <Scene key="root">
                 <Scene key="formLogin" component={FormLogin} hideNavBar title="Login" />
