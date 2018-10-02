@@ -2,6 +2,11 @@
   "name": "app8",
   "version": "0.0.1",
   "private": true,
+  "rnpm":{
+    "assets":[
+      "./assets/fonts"
+    ]
+  },
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
@@ -11,6 +16,7 @@
     "base-64": "^0.1.0",
     "firebase": "^4.9.1",
     "lodash": "^4.17.11",
+    "native-base": "^2.8.0",
     "react": "16.5.0",
     "react-native": "0.57.0",
     "react-native-keyboard-aware-scroll-view": "^0.7.2",
