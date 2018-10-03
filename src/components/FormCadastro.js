@@ -27,15 +27,17 @@ class formCadastro extends Component {
 			)
 		}
 		return (
-			<Button title="Cadastrar"
+			/* <Button title="Cadastrar"
 				color="white"
-				onPress={() => this._cadastraUsuario()} />)
+				onPress={() => this._cadastraUsuario()} /> */
+				<Text>     CADASTRAR     </Text>)
 	}
 
 	render() {
+		//<StatusBar backgroundColor={COLOR_HTML_P} translucent={false}/>
 		return (
-			<ImageBackground style={{ flex: 1, width: null }} source={require('../imgs/bg.png')}>
-				<StatusBar backgroundColor={COLOR_HTML_P} translucent={false}/>
+			<ImageBackground style={{ flex: 1 }} source={require('../imgs/bg.png')}>
+				
 				<View style={{ flex: 1, padding: 5}}>
 					<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 						<Text style={{ fontSize: 25, color: 'white' }}></Text>
