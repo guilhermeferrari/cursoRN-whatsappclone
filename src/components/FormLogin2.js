@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
-import {
-    View, Platform,
-    StatusBar, Text, TextInput,
-    TouchableOpacity, ImageBackground,
-    StyleSheet, ActivityIndicator,
-    TouchableNativeFeedback
-} from 'react-native';
+import { View, StatusBar, Text, TextInput, Button, TouchableOpacity, ImageBackground, StyleSheet, ActivityIndicator } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import { modificaEmail, modificaSenha, autenticarUsuario } from '../actions/AutenticacaoActions'
-import { Container, Header, Content, Button } from 'native-base';
-import { Fonts } from '../../Fonts'
 
 export const PLACEHOLDER_COLOR = '#CFD8DC'
 
@@ -23,7 +15,7 @@ export const COLOR_RGBA_S = 'rgba(0,191,165,0.9)'
 export const borderRADIUS_PADRAO = 14
 export const ERROR_COLOR_PADRAO = '#B00020'
 let ERROR_COLOR = 'transparent'
-let COR_BOTAO_ACESSAR = COLOR_HTML_S
+
 class formLogin_beta extends Component {
 
     componentWillMount() {
@@ -36,77 +28,24 @@ class formLogin_beta extends Component {
     }
 
     renderBtnAcessar() {
-        if (this.props.loading_login) {
+        if(this.props.loading_login){
             return (
-                <ActivityIndicator size="large" />
+                <ActivityIndicator size="large"/>
             )
         }
         return (
-            <Text style={styles.txtBotao}>            ACESSAR            </Text>
+            <Button title="Acessar" color='white'
+                onPress={() => this._autenticarUsuario()} />
         )
-    }
-
-    mudaCor() {
-        styles.botaoAcessar.backgroundColor = COLOR_HTML_P
-        alert(styles.botaoAcessar.backgroundColor)
-    }
-
-    renderBotaoAcessarView() {
-        if (Platform.OS == 'android') {
-            return (
-                <Button rounded style={styles.botaoAcessar}>
-                    {this.renderBtnAcessar()}
-                </Button>
-                /* <TouchableNativeFeedback
-                    style={{ borderRadius: borderRADIUS_PADRAO, borderWidth:20,borderColor:'black' }}
-                    ref={(ref) => this.touchableNativeFeedback = ref}
-                    background={TouchableNativeFeedback.Ripple('red', false)}
-                    //useForeground
-                    onPress={
-                        () => {
-                            //this._autenticarUsuario()
-                            this.mudaCor()
-                        }
-                    }>
-                    <View style={styles.botaoAcessar}>
-                        {this.renderBtnAcessar()}
-                    </View>
-                </TouchableNativeFeedback> */
-            )
-        }
-        else {
-            return (
-                <TouchableOpacity
-                    ref={(ref) => this.touchableOpacity = ref}
-                    onPressIn={
-                        () => {
-                            this.touchableOpacity.setOpacityTo(0.2, 0.1)
-                        }
-                    }
-                    onPress={
-                        () => {
-                            //this._autenticarUsuario()
-
-                            this.mudaCor()
-                        }
-                    }
-                //activeOpacity={0.9}
-                >
-                    <View style={styles.botaoAcessar}>
-                        {this.renderBtnAcessar()}
-                    </View>
-                </TouchableOpacity>
-            )
-        }
     }
 
     render() {
         return (
             <ImageBackground style={{ flex: 1, width: null }} source={require('../imgs/bg.png')}>
-                <StatusBar backgroundColor='transparent' translucent />
-                <View style={{ flex: 1, padding: 5 }}>
+            <StatusBar backgroundColor='transparent' translucent />
+            <View style={{ flex: 1, padding: 5 }}>
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={styles.txtTitulo}>WhatsApp Clone</Text>
+                        <Text style={{ fontSize: 25, color: 'white' }}>WhatsApp Clone</Text>
                     </View>
                     <View style={styles.viewDados}>
                         <View style={styles.viewEmailSenha}>
@@ -125,15 +64,13 @@ class formLogin_beta extends Component {
                                         Actions.formCadastro()
                                     }
                                 }>
-                                <Text style={styles.txtCadastro}>Ainda não tem cadastro? Cadastre-se</Text>
+                                <Text style={{ fontSize: 20, color: '#212121' }}>Ainda não tem cadastro? Cadastre-se</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
                     <View style={{ flex: 1, alignItems: 'center' }}>
-                        <View>
-                            <Button rounded style={styles.botaoAcessar}>
+                        <View style={styles.botaoAcessar}>
                                 {this.renderBtnAcessar()}
-                            </Button>
                         </View>
                     </View>
                     <View style={[styles.viewErro, { backgroundColor: this.props.errorColor }]}>
@@ -160,8 +97,7 @@ export const styles = StyleSheet.create({
     campoEntrada: {
         fontSize: 20,
         height: 45,
-        color: PLACEHOLDER_COLOR, 
-        fontFamily: Fonts.ProductSans
+        color: PLACEHOLDER_COLOR
     },
     viewEmailSenha: {
         flex: 1,
@@ -179,38 +115,13 @@ export const styles = StyleSheet.create({
         borderRadius: borderRADIUS_PADRAO
     },
     botaoAcessar: {
-        ...Platform.select({
-            ios: {
-                shadowColor: 'rgba(0,0,0, .4)',
-                shadowOffset: { height: 1, width: 1 },
-                shadowOpacity: 1,
-                shadowRadius: 1,
-            },
-            android: {
-                elevation: 2,
-            },
-        }),
         marginTop: -21,
-        backgroundColor: COR_BOTAO_ACESSAR,
+        height: 42,
+        width: 150,
+        backgroundColor: COLOR_HTML_S,
         justifyContent: 'center',
         alignItems: 'center',
-
-        //borderRadius: borderRADIUS_PADRAO
-    },
-    txtBotao: {
-        color: 'white',
-        fontWeight: '900',
-        fontFamily: Fonts.ProductSansBold
-    },
-    txtCadastro: {
-        fontSize: 20,
-        color: '#212121',
-        fontFamily: Fonts.ProductSans
-    },
-    txtTitulo: {
-        fontSize: 25,
-        color: 'white',
-        fontFamily: Fonts.ProductSans
+        borderRadius: borderRADIUS_PADRAO
     }
 })
 

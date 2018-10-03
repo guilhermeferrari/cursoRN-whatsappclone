@@ -2,8 +2,8 @@
   "name": "app8",
   "version": "0.0.1",
   "private": true,
-  "rnpm":{
-    "assets":[
+  "rnpm": {
+    "assets": [
       "./assets/fonts"
     ]
   },
@@ -22,6 +22,7 @@
     "react-native-keyboard-aware-scroll-view": "^0.7.2",
     "react-native-router-flux": "^4.0.1",
     "react-native-tab-view": "0.0.67",
+    "react-navigation": "^2.17.0",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0"
