@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, StatusBar, Button, ImageBackground, StyleSheet, Text, ActivityIndicator } from 'react-native';
+import { View, TextInput, StatusBar, ImageBackground, StyleSheet, Text, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux'
 import {
 	modificaEmail,
@@ -7,7 +7,37 @@ import {
 	modificaNome,
 	cadastraUsuario
 } from '../actions/AutenticacaoActions'
+import { Container, Header, Content, Button, Row } from 'native-base';
 import { styles, PLACEHOLDER_COLOR, COLOR_HTML_P } from './FormLogin'
+
+
+/* import AppReducer from '../reducers/AppReducer';
+import { applyMiddleware, createStore, compose } from 'redux';
+import { offline } from '@redux-offline/redux-offline';
+import offlineConfig from '@redux-offline/redux-offline/lib/defaults';
+const store = createStore(
+	AppReducer,
+	mapStateToProps,
+	compose(
+		applyMiddleware(middleware),
+		offline(offlineConfig)
+	)
+);
+const followUser = userId => ({
+	type: 'FOLLOW_USER_REQUEST',
+	payload: { userId },
+	meta: {
+		offline: {
+			// the network action to execute:
+			effect: { url: '/api/follow', method: 'POST', json: { userId } },
+			// action to dispatch when effect succeeds:
+			commit: { type: 'FOLLOW_USER_COMMIT', meta: { userId } },
+			// action to dispatch if network action fails permanently:
+			rollback: { type: 'FOLLOW_USER_ROLLBACK', meta: { userId } }
+		}
+	}
+}); */
+
 
 class formCadastro extends Component {
 
@@ -23,22 +53,23 @@ class formCadastro extends Component {
 	renderBtnCadastro() {
 		if (this.props.loading_cadastro) {
 			return (
-				<ActivityIndicator size="large" />
+				<View style={{ flexDirection: 'row' }}>
+					<Text>              </Text>
+					<ActivityIndicator size="large" />
+					<Text>              </Text>
+				</View>
 			)
 		}
 		return (
-			/* <Button title="Cadastrar"
-				color="white"
-				onPress={() => this._cadastraUsuario()} /> */
-				<Text>     CADASTRAR     </Text>)
+			<Text style={styles.txtBotao}>          CADASTRAR          </Text>)
 	}
 
 	render() {
 		//<StatusBar backgroundColor={COLOR_HTML_P} translucent={false}/>
 		return (
 			<ImageBackground style={{ flex: 1 }} source={require('../imgs/bg.png')}>
-				
-				<View style={{ flex: 1, padding: 5}}>
+
+				<View style={{ flex: 1, padding: 5 }}>
 					<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 						<Text style={{ fontSize: 25, color: 'white' }}></Text>
 					</View>
@@ -62,8 +93,13 @@ class formCadastro extends Component {
 							placeholderTextColor={PLACEHOLDER_COLOR} />
 					</View>
 					<View style={{ flex: 1, alignItems: 'center' }}>
-						<View style={styles.botaoAcessar}>
-							{this.renderBtnCadastro()}
+						<View>
+							<Button rounded
+								onPress={() => this._cadastraUsuario()}
+								style={styles.botaoAcessar}
+							>
+								{this.renderBtnCadastro()}
+							</Button>
 						</View>
 					</View>
 					<View style={[styles.viewErro, { backgroundColor: this.props.errorColor }]}>
