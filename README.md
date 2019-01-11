@@ -2,7 +2,7 @@
 
 Aplicativo feito com base no curso de React Native: [Desenvolvedor Multiplataforma Android/IOS com React e Redux](https://www.udemy.com/desenvolvedor-multiplataforma-androidios-com-react-e-redux/)
 
-As bibliotecas usadas est~ao no arquivo `package.json`
+As bibliotecas usadas estão no arquivo `package.json`
 
 # Screenshots
 
