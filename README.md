@@ -1,3 +1,5 @@
 # cursoRN-whatsappclone
 
-![Teste](https://firebasestorage.googleapis.com/v0/b/whatsapp-clone-e01f1.appspot.com/o/grav1.gif?alt=media&token=93153f3c-ff46-4aee-9a1f-439fff8aee3d)
+![grav2](https://user-images.githubusercontent.com/19395842/51060131-c0e59700-15d5-11e9-89c9-b772f4cae6c3.gif)
+
+
