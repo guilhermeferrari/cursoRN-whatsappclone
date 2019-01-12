@@ -4,9 +4,7 @@ Aplicativo feito com base no curso de React Native: [Desenvolvedor Multiplatafor
 
 As bibliotecas usadas estão no arquivo `package.json`
 
-O atraso no carregamento das conversas e contatos se dá por esperar a resposta do banco de dados (firebase).
-
-É possível usar AsyncStorage ou bibliotecas similares para salvar conversas/contatos e evitar o loading a cada login.
+O atraso no carregamento das conversas e contatos se dá por esperar a resposta do banco de dados (firebase). É possível usar AsyncStorage ou bibliotecas similares para salvar conversas/contatos e evitar o loading a cada login.
 
 # Screenshots
 
